@@ -1,0 +1,48 @@
+realizar en un proyecto laravel lo siguiente: 
+Sistema de gestión de bibliotecas.
+Se requiere un sistema que nos permita administrar muchas bibliotecas con una sola herramienta, para eso se presentan los siguientes requisitos:
+Reglas de la prueba:
+1. La prueba debe realizarse usando laravel.
+2. Las bibliotecas deben ir vinculadas al usuario que las crea y este es el administrador de las bibliotecas que a creado. Por esta razón se debe contar con un sistema de registro y inicio de sesión.
+Administrador:
+1. Debe permitir ingresar nuevas bibliotecas, con los siguientes datos:
+* Nombre: Debe ser obligatorio y contar con 5 a 30 caracteres.
+* Ubicación: Debe ser obligatoria y contar con 20 a 125 caracteres.
+* Descripción: No es obligatoria y debe tener maximo 500 caracteres.
+* Ningun campo debe guardar espacios ni al inicio ni al final.
+2. Debe permitir registrar nuevos temas, con los siguientes datos:
+* Nombre: Debe ser obligatorio y contar con 5 a 30 caracteres.
+* Codigo de color: Es el codigo hexadesimal del color, no el nombre del color.
+3. Debe permitir ingresar estanterias nuevas en una biblioteca
+* Al ingresar a una biblioteca especifica debe tener la opcion de crear nueva estanteria.
+* La estanteria debe contar con los siguientes campos:
+* El tema al que pertenece la estanteria, debe ser obligatorio.
+* Codigo de la estanteria: Debe componerse de la primera letra del tema y un numero segun la cantidad de estanterias que tena la biblioteca a la que se encuentre asociada.
+4. Debe permitir introducir nuevos autores, con los siguientes datos:
+* Nombre: Debe ser obligatorio y contar con 5 a 30 caracteres.
+* Biografia: Resumen de la biografia, debe tener maximo 500 caracteres.
+5. Debe permitir registrar nuevos libros con los siguientes libros:
+* Nombre: Debe ser obligatorio y contar con 5 a 45 caracteres.
+* Fecha de publicación: debe ser obligatoria.
+* Autor del libro: obligatorio.
+6. Debe permitir registrar nuevas copias de los libros, con los siguientes campos:
+* Libro al que pertenece la copia.
+* Numero de copia: obligatorio.
+* Estanteria donde se guarda la copia debe ser del mismo tema al cual pertenece el libro.
+Usuarios:
+Los usuarios podran crear un repositorio personal administrada por el mismo.
+1. Los usuarios deben poder buscar bibliotecas, libros o autores que no hayan registrado ellos mismos. 
+2. Al ver las estanterias, estas deben verse segun el codigo de color del tema al que pertenecen. 
+3. Al buscar un libro debe mostrar las bibliotecas , el numero de copias que tenga cada biblioteca y la estanteria donde esten ubicadas. 
+4. Cuando un usuario entra a una biblioteca, debe mostrar las estanterias ordenadas segun el numero de libros que tenga cada uno. 
+5. Distintos usuarios pueden ver los repositorios de otros usuarios pero no modificarlos.
+-----------------------------------------------------------------------------------------------------------------------------------------x
+Modelos
+
+User: Modelo para los usuarios registrados en el sistema. Contiene los campos estándar de Laravel para autenticación.
+Library: Modelo para representar las bibliotecas. Tiene una relación belongsTo con el modelo User para asociar cada biblioteca a un usuario.
+Theme: Modelo para los temas de las estanterías. Contiene el nombre y el código de color hexadecimal.
+Shelf: Modelo para las estanterías. Tiene relaciones belongsTo con Library y Theme para asociar cada estantería a una biblioteca y un tema.
+Author: Modelo para los autores de los libros. Contiene el nombre y la biografía.
+Book: Modelo para los libros. Tiene relaciones belongsTo con Author y belongsToMany con Library a través de la tabla pivote BookCopy.
+BookCopy: Modelo para las copias de los libros. Actúa como tabla pivote entre Book y Library, y también tiene una relación belongsTo con Shelf para asociar cada copia a una estantería.

@@ -1,0 +1,22 @@
+Para Crear un crud:
+composer require Ibex/crud-generator --dev
+php artisan vendor:publish --tag=crud
+php artisan make:crud nombre_del_modelo 
+composer require laravel/ui
+php artisan ui Nombre_en_este_caso_bootstrap
+npm install
+npm run dev
+
+corregir error en caso que no deje:
+# Abre PowerShell como administrador y ejecuta
+Set-ExecutionPolicy RemoteSigned
+
+# Navega al directorio del proyecto y ejecuta
+cd C:\Users\ARTESOL\Dropbox\PC\Desktop\Ejercicios-Laravel
+npm install
+npm run build
+
+en caso de elegir: tailwind:
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+npm run dev

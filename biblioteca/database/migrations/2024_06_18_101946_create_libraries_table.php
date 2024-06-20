@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('libraries', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('location');
-            $table->text('description')->nullable();
+            $table->string('name', 30);
+            $table->string('location', 125);
+            $table->text('description')->nullable()->default(null);
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
